@@ -1,0 +1,1594 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>The Idea Wheel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --ink:#1B1A21;
+  --panel:#24222C;
+  --panel-edge:#39353f;
+  --brass:#C89B3C;
+  --brass-light:#E7C878;
+  --cream:#F3EEE3;
+  --muted:rgba(243,238,227,0.6);
+  --shadow:rgba(0,0,0,0.5);
+
+  --seg-1:#2E8B67;
+  --seg-2:#E1604F;
+  --seg-3:#E3A73C;
+  --seg-4:#7C5EA6;
+  --seg-5:#2C8C99;
+  --seg-6:#C1487A;
+  --seg-7:#4F8F3E;
+  --seg-8:#3D6FA6;
+  --seg-9:#C97A2B;
+  --seg-10:#8A5A3B;
+  --seg-11:#4A4E9B;
+  --seg-12:#A33F5A;
+
+  --font-display:'Anton','Arial Narrow',sans-serif;
+  --font-body:'Space Grotesk','Segoe UI',sans-serif;
+}
+
+*{ box-sizing:border-box; }
+
+html,body{
+  margin:0;
+  padding:0;
+  background:
+    radial-gradient(circle at 50% 0%, #2a2732 0%, var(--ink) 55%),
+    repeating-radial-gradient(circle at 0 0, rgba(200,155,60,0.05) 0, rgba(200,155,60,0.05) 1px, transparent 1px, transparent 26px);
+  color:var(--cream);
+  font-family:var(--font-body);
+  min-height:100vh;
+}
+
+button{ font-family:inherit; }
+
+button:focus-visible,
+a:focus-visible{
+  outline:3px solid var(--brass-light);
+  outline-offset:3px;
+}
+
+.screen{
+  display:none;
+  min-height:100vh;
+  width:100%;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:32px 20px 48px;
+}
+
+.screen.active{
+  display:flex;
+  animation:riseIn .5s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes riseIn{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.topbar{
+  position:absolute;
+  top:20px;
+  left:20px;
+}
+
+.btn-link{
+  background:none;
+  border:none;
+  color:var(--muted);
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:0.95rem;
+  letter-spacing:0.03em;
+  cursor:pointer;
+  padding:8px 10px;
+  border-radius:8px;
+  transition:color .2s ease, background .2s ease;
+}
+
+.btn-link:hover{
+  color:var(--brass-light);
+  background:rgba(200,155,60,0.08);
+}
+
+.stage{
+  width:100%;
+  max-width:460px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.eyebrow{
+  margin:0 0 6px;
+  font-size:0.8rem;
+  font-weight:700;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--brass);
+}
+
+.brand{
+  font-family:var(--font-display);
+  font-weight:400;
+  letter-spacing:0.02em;
+  font-size:clamp(2.6rem, 9vw, 3.6rem);
+  line-height:1;
+  margin:0 0 10px;
+  color:var(--cream);
+  text-shadow:0 2px 0 rgba(0,0,0,0.35);
+}
+
+.rule{
+  width:64px;
+  height:3px;
+  background:linear-gradient(90deg, transparent, var(--brass), transparent);
+  margin:6px 0 18px;
+}
+
+.tagline{
+  margin:0 0 34px;
+  color:var(--muted);
+  font-size:1.02rem;
+  max-width:340px;
+}
+
+.section-title{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(1.7rem, 6vw, 2.2rem);
+  margin:0 0 8px;
+  letter-spacing:0.01em;
+}
+
+.subtext{
+  color:var(--muted);
+  font-size:0.98rem;
+  margin:0 0 28px;
+  max-width:340px;
+}
+
+.button-stack{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  width:100%;
+  max-width:280px;
+}
+
+.btn{
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:1rem;
+  letter-spacing:0.02em;
+  padding:15px 22px;
+  border-radius:12px;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:transform .15s ease, box-shadow .15s ease, background .2s ease, border-color .2s ease;
+}
+
+.btn-primary{
+  background:linear-gradient(180deg, var(--brass-light), var(--brass));
+  color:#221b0d;
+  box-shadow:0 6px 0 #8a6a26, 0 10px 18px var(--shadow);
+}
+
+.btn-primary:hover{ transform:translateY(-2px); }
+.btn-primary:active{ transform:translateY(2px); box-shadow:0 3px 0 #8a6a26, 0 6px 12px var(--shadow); }
+
+.btn-ghost{
+  background:transparent;
+  color:var(--cream);
+  border-color:var(--panel-edge);
+}
+
+.btn-ghost:hover{
+  border-color:var(--brass);
+  color:var(--brass-light);
+}
+
+/* About card */
+.card{
+  background:var(--panel);
+  border:1px solid var(--panel-edge);
+  border-radius:16px;
+  padding:34px 30px;
+  max-width:380px;
+  width:100%;
+  box-shadow:0 14px 30px var(--shadow);
+}
+
+/* Wheel screen */
+.wheel-rig{
+  position:relative;
+  width:min(78vw, 300px);
+  height:min(78vw, 300px);
+  margin:10px auto 30px;
+}
+
+.light-ring{
+  position:absolute;
+  inset:0;
+}
+
+.bulb{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:7px;
+  height:7px;
+  margin:-3.5px;
+  border-radius:50%;
+  background:radial-gradient(circle, var(--brass-light), var(--brass) 70%);
+  opacity:0.35;
+  box-shadow:0 0 3px rgba(231,200,120,0.4);
+}
+
+.wheel-rig.spinning .bulb{
+  animation:bulbGlow 0.9s linear infinite;
+  animation-delay:var(--d);
+}
+
+@keyframes bulbGlow{
+  0%, 100%{ opacity:0.3; box-shadow:0 0 3px rgba(231,200,120,0.3); }
+  40%{ opacity:1; box-shadow:0 0 9px 2px rgba(231,200,120,0.9); }
+}
+
+.wheel{
+  position:absolute;
+  inset:16px;
+  border-radius:50%;
+  transform:rotate(0deg);
+  will-change:transform;
+  filter:drop-shadow(0 10px 16px var(--shadow));
+}
+
+.wheel svg{
+  width:100%;
+  height:100%;
+  display:block;
+  border-radius:50%;
+}
+
+.pointer{
+  position:absolute;
+  top:-6px;
+  left:50%;
+  width:0;
+  height:0;
+  transform:translateX(-50%);
+  border-left:12px solid transparent;
+  border-right:12px solid transparent;
+  border-top:20px solid var(--brass-light);
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,0.5));
+  z-index:3;
+}
+
+.hub{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:30px;
+  height:30px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--brass-light), var(--brass) 60%, #7a5c22 100%);
+  box-shadow:0 3px 6px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.4);
+  z-index:3;
+}
+
+.go-btn{
+  width:104px;
+  height:104px;
+  border-radius:50%;
+  border:none;
+  font-family:var(--font-display);
+  font-size:1.6rem;
+  letter-spacing:0.04em;
+  color:#3a1210;
+  background:radial-gradient(circle at 35% 30%, #ff8b7c, #e1604f 55%, #a83f33 100%);
+  box-shadow:0 7px 0 #7d2e24, 0 12px 20px var(--shadow);
+  cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease;
+  margin-bottom:26px;
+}
+
+.go-btn:hover{ transform:translateY(-2px); }
+.go-btn:active,
+.go-btn:disabled{
+  transform:translateY(5px);
+  box-shadow:0 2px 0 #7d2e24, 0 6px 10px var(--shadow);
+}
+.go-btn:disabled{ cursor:default; opacity:0.85; }
+
+.ticket{
+  background:var(--panel);
+  border:1px solid var(--panel-edge);
+  border-radius:12px;
+  padding:20px 24px;
+  max-width:340px;
+  width:100%;
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .5s ease, transform .5s ease;
+  position:relative;
+}
+
+.ticket::before{
+  content:"";
+  position:absolute;
+  top:-6px;
+  left:0;
+  right:0;
+  height:12px;
+  background-image:radial-gradient(circle, var(--ink) 3px, transparent 3.5px);
+  background-size:16px 12px;
+  background-repeat:repeat-x;
+  background-position:center;
+}
+
+.ticket.revealed{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.ticket-eyebrow{
+  margin:0 0 6px;
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--brass);
+}
+
+.ticket-idea{
+  margin:0;
+  font-size:1.08rem;
+  line-height:1.4;
+  min-height:1.4em;
+}
+
+.legend{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px 14px;
+  max-width:340px;
+  width:100%;
+  margin:4px 0 22px;
+  text-align:left;
+}
+
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:0.74rem;
+  color:var(--muted);
+}
+
+.swatch{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  flex:none;
+}
+
+.ticket-tag{
+  display:inline-block;
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:3px 10px;
+  border-radius:999px;
+  margin-bottom:10px;
+  color:#1b1a21;
+}
+
+.ticket-actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+
+.btn-small{
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:0.82rem;
+  padding:8px 14px;
+  border-radius:8px;
+  border:2px solid var(--panel-edge);
+  background:transparent;
+  color:var(--cream);
+  cursor:pointer;
+  transition:border-color .2s ease, color .2s ease;
+}
+
+.btn-small:hover{ border-color:var(--brass); color:var(--brass-light); }
+
+.saved-panel{
+  max-width:340px;
+  width:100%;
+  margin-top:26px;
+  text-align:left;
+}
+
+.saved-panel h3{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:1.1rem;
+  margin:0 0 10px;
+}
+
+.btn-small:disabled{ opacity:0.6; cursor:default; }
+.btn-small:disabled:hover{ border-color:var(--panel-edge); color:var(--cream); }
+
+.saved-item{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  padding:12px 0;
+  border-bottom:1px solid var(--panel-edge);
+  font-size:0.88rem;
+}
+
+.saved-main{ min-width:0; flex:1; }
+.saved-main p{ margin:0; overflow-wrap:anywhere; line-height:1.4; }
+.saved-name{ display:block; font-weight:700; margin-bottom:2px; }
+.saved-meta{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:0.78rem;
+  font-variant-numeric:tabular-nums;
+}
+
+.saved-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px;
+  flex:none;
+}
+
+.saved-actions button{
+  background:none;
+  border:none;
+  color:var(--muted);
+  cursor:pointer;
+  font-size:0.78rem;
+  padding:2px 0;
+}
+
+.saved-actions button:hover{ color:var(--brass-light); }
+.saved-actions .open{ color:var(--brass-light); font-weight:700; }
+.saved-actions .confirming{ color:#ff8b7c; font-weight:700; }
+
+.saved-empty{ color:var(--muted); font-size:0.85rem; }
+
+/* Plan screen */
+.screen.has-topbar{ padding-top:72px; }
+.stage-wide{ max-width:560px; }
+
+.plan-idea{
+  width:100%;
+  text-align:left;
+  background:var(--panel);
+  border:1px solid var(--panel-edge);
+  border-radius:12px;
+  padding:18px 20px;
+  margin:0 0 22px;
+}
+
+.plan-idea .ticket-tag{ margin-bottom:8px; }
+.plan-idea p{ margin:0; font-size:1.02rem; line-height:1.45; overflow-wrap:anywhere; }
+
+.field{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  text-align:left;
+  margin-bottom:26px;
+}
+
+.field label,
+.items-title{
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--brass);
+}
+
+.items-title{ width:100%; text-align:left; margin:0 0 10px; }
+
+.input{
+  font:inherit;
+  font-size:1rem;
+  width:100%;
+  min-width:0;
+  padding:11px 12px;
+  border-radius:9px;
+  border:2px solid var(--panel-edge);
+  background:var(--ink);
+  color:var(--cream);
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+
+.input::placeholder{ color:rgba(243,238,227,0.38); }
+
+.input:focus-visible{
+  outline:none;
+  border-color:var(--brass);
+  box-shadow:0 0 0 3px rgba(200,155,60,0.25);
+}
+
+select.input{ cursor:pointer; padding-right:8px; }
+
+input[type="number"].input{ -moz-appearance:textfield; appearance:textfield; font-variant-numeric:tabular-nums; }
+input[type="number"].input::-webkit-outer-spin-button,
+input[type="number"].input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+
+.items{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.item{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  grid-template-areas:"name name remove" "type price price";
+  gap:8px;
+  align-items:center;
+  padding:12px;
+  background:var(--panel);
+  border:1px solid var(--panel-edge);
+  border-radius:12px;
+  text-align:left;
+}
+
+.item-name{ grid-area:name; }
+.item-type{ grid-area:type; }
+.price-wrap{ grid-area:price; position:relative; display:block; }
+.price-wrap .cur{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);
+  pointer-events:none;
+}
+.price-wrap .input{ padding-left:26px; }
+
+.item-remove{
+  grid-area:remove;
+  width:42px;
+  height:42px;
+  border-radius:9px;
+  border:2px solid var(--panel-edge);
+  background:transparent;
+  color:var(--muted);
+  font-size:1.3rem;
+  line-height:1;
+  cursor:pointer;
+  transition:color .2s ease, border-color .2s ease;
+}
+
+.item-remove:hover{ color:#ff8b7c; border-color:#ff8b7c; }
+
+.item.invalid .item-price{ border-color:#e1604f; }
+
+.total-bar{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:6px 12px;
+  padding:16px 4px 6px;
+  margin-top:8px;
+  border-top:2px solid var(--brass);
+}
+
+.total-label{
+  font-size:0.8rem;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.total-count{ font-size:0.85rem; color:var(--muted); width:100%; text-align:left; margin:0 4px 14px; }
+
+.total-amount{
+  font-family:var(--font-display);
+  font-size:1.9rem;
+  letter-spacing:0.02em;
+  font-variant-numeric:tabular-nums;
+}
+
+.plan-actions{ width:100%; max-width:280px; margin-top:10px; }
+
+.plan-status{
+  min-height:1.4em;
+  margin:14px 0 0;
+  font-size:0.9rem;
+  color:var(--muted);
+}
+
+.plan-status.error{ color:#ff8b7c; }
+
+@media (prefers-reduced-motion: reduce){
+  .screen.active{ animation:none; }
+  .wheel-rig.spinning .bulb{ animation:none; opacity:0.9; }
+  .wheel{ transition:opacity .3s ease !important; }
+}
+</style>
+<!-- HOME -->
+<section id="screen-home" class="screen active" tabindex="-1">
+  <div class="stage">
+    <p class="eyebrow">A machine for new business</p>
+    <h1 class="brand">THE IDEA WHEEL</h1>
+    <div class="rule"></div>
+    <p class="tagline">Give it a spin. Walk away with a business.</p>
+    <div class="button-stack">
+      <button id="btn-generate" class="btn btn-primary">Generate an idea</button>
+      <button id="btn-about" class="btn btn-ghost">About</button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="screen-about" class="screen has-topbar" tabindex="-1">
+  <div class="topbar">
+    <button id="btn-back-about" class="btn-link">&larr; Home</button>
+  </div>
+  <div class="stage">
+    <div class="card">
+      <p class="eyebrow">About</p>
+      <h2 class="section-title">The Idea Wheel</h2>
+      <p class="subtext" style="margin-bottom:0;">This is the app for the project.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHEEL / GENERATE -->
+<section id="screen-wheel" class="screen has-topbar" tabindex="-1">
+  <div class="topbar">
+    <button id="btn-back-wheel" class="btn-link">&larr; Home</button>
+  </div>
+  <div class="stage">
+    <p class="eyebrow">Step right up</p>
+    <h2 class="section-title">Give the wheel a spin</h2>
+    <p class="subtext">Press go and hold on &mdash; your idea prints below in three seconds.</p>
+
+    <div class="legend" id="legend"></div>
+
+    <div class="wheel-rig" id="wheelRig">
+      <div class="light-ring" id="lightRing"></div>
+      <div class="wheel" id="wheel">
+        <svg id="wheelSvg" viewBox="0 0 300 300"></svg>
+      </div>
+      <div class="hub"></div>
+      <div class="pointer"></div>
+    </div>
+
+    <button id="btn-go" class="go-btn">GO</button>
+
+    <div class="ticket" id="ticket" aria-live="polite">
+      <span class="ticket-tag" id="ticket-tag"></span>
+      <p class="ticket-eyebrow">Your idea</p>
+      <p class="ticket-idea" id="idea-text"></p>
+      <div class="ticket-actions">
+        <button id="btn-save" class="btn-small">&#9733; Save idea</button>
+        <button id="btn-plan" class="btn-small">Add products &amp; prices &rarr;</button>
+      </div>
+    </div>
+
+    <div class="saved-panel">
+      <h3>Saved ideas</h3>
+      <div id="saved-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN: products, services and prices -->
+<section id="screen-plan" class="screen has-topbar" tabindex="-1">
+  <div class="topbar">
+    <button id="btn-back-plan" class="btn-link">&larr; Back</button>
+  </div>
+  <div class="stage stage-wide">
+    <p class="eyebrow">Price list</p>
+    <h2 class="section-title">Price your idea</h2>
+    <p class="subtext">Add what you would sell and what you would charge. It saves as you type.</p>
+
+    <div class="plan-idea">
+      <span class="ticket-tag" id="plan-tag"></span>
+      <p id="plan-idea-text"></p>
+    </div>
+
+    <div class="field">
+      <label for="plan-business-name">Business name</label>
+      <input id="plan-business-name" class="input" type="text" maxlength="60" placeholder="e.g. Night Owl Noodles" autocomplete="off">
+    </div>
+
+    <h3 class="items-title">Products and services</h3>
+    <div class="items" id="plan-items"></div>
+    <button id="btn-add-item" class="btn-small" type="button">+ Add item</button>
+
+    <div class="total-bar">
+      <span class="total-label">Total</span>
+      <span class="total-amount" id="plan-total">$0.00</span>
+      <span class="total-count" id="plan-count">0 items</span>
+    </div>
+
+    <div class="plan-actions">
+      <button id="btn-export" class="btn btn-primary" type="button" style="width:100%">Export as PDF</button>
+    </div>
+    <p class="plan-status" id="plan-status" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+(function(){
+  "use strict";
+
+  var categories = [
+    { name:"Food & Drink", color:"var(--seg-1)", subjects:["food truck","pop-up caf\u00e9","snack brand","meal-prep service","bubble tea stand","neighborhood bakery","juice bar","catering company","hot sauce brand","ice cream cart"] },
+    { name:"Tech & Apps", color:"var(--seg-2)", subjects:["mobile app","browser extension","AI-powered tool","budgeting app","scheduling tool","productivity app","online marketplace","website builder","study-group app","smart home installation service"] },
+    { name:"Retail", color:"var(--seg-3)", subjects:["boutique shop","online store","subscription box","thrift store","custom sneaker shop","vintage clothing resale shop","gift basket company","stationery shop","phone case brand","candle-making shop"] },
+    { name:"Health & Wellness", color:"var(--seg-4)", subjects:["wellness studio","fitness app","recovery service","yoga studio","meal-planning service","meditation app","mobile massage service","sleep coaching service","walking club","personal training service"] },
+    { name:"Education", color:"var(--seg-5)", subjects:["tutoring service","online course","learning app","coding bootcamp","language exchange club","test-prep service","financial literacy workshop","music lesson studio","study skills coaching service","summer enrichment camp"] },
+    { name:"Creative Services", color:"var(--seg-6)", subjects:["design studio","content agency","photography service","video editing service","logo design shop","podcast production company","wedding videography company","illustration studio","social media management agency","resume writing service"] },
+    { name:"Sustainability", color:"var(--seg-7)", subjects:["recycling service","upcycling shop","eco-consulting firm","composting service","refill store","solar installation company","zero-waste grocery","clothing swap shop","rainwater collection business","reusable packaging company"] },
+    { name:"Local Services", color:"var(--seg-8)", subjects:["repair service","cleaning company","home-organizing business","lawn care service","handyman service","moving company","window washing company","laundry delivery service","tech support service for seniors","pressure washing business"] },
+    { name:"Kids & Family", color:"var(--seg-9)", subjects:["after-school program","toy brand","family event company","babysitting network","kids' cooking class","family photo studio","birthday party planner","educational toy subscription","kids' sports league","baby gear rental company"] },
+    { name:"Pets", color:"var(--seg-10)", subjects:["pet-sitting service","pet-grooming van","pet subscription box","dog-training school","pet photography studio","pet-friendly caf\u00e9","dog-walking service","pet treat bakery","pet daycare","aquarium maintenance service"] },
+    { name:"Travel & Experiences", color:"var(--seg-11)", subjects:["tour company","travel app","local experience guide","campervan rental business","food tour company","weekend getaway planner","hostel","ghost tour company","adventure sports outfitter","travel photography workshop"] },
+    { name:"Events & Entertainment", color:"var(--seg-12)", subjects:["event-planning business","entertainment studio","party-rental company","DJ service","escape room","mobile arcade","trivia night company","photo booth rental business","pop-up cinema","live music venue"] }
+  ];
+
+  var twists = [
+    "aimed at people who are always running late",
+    "that delivers within thirty minutes or it's free",
+    "run entirely by a rotating cast of local creators",
+    "that turns leftover materials into something new",
+    "built around a subscription instead of one-time sales",
+    "that only operates on weekends",
+    "designed specifically for college students on a budget",
+    "that partners with local small businesses instead of competing with them",
+    "powered by a mobile app with real-time tracking",
+    "that offers a pay-what-you-can pricing model",
+    "built around a loyalty program instead of ads",
+    "that specializes in last-minute requests",
+    "that donates a portion of every sale to a local cause",
+    "built for remote workers who are tired of working alone",
+    "that pairs every customer with a personal guide",
+    "designed for people over sixty-five",
+    "that runs on a membership instead of per-purchase pricing",
+    "that uses only locally sourced materials",
+    "built around a referral program where friends earn rewards",
+    "that lets customers vote on what comes next",
+    "designed for busy parents",
+    "that offers a free first month to every new customer",
+    "aimed at first-time customers who feel intimidated",
+    "that customizes everything to each customer's budget",
+    "built to be run from a spare room or garage",
+    "that bundles three services into one monthly price",
+    "designed around a single neighborhood",
+    "built to be fully accessible to people with disabilities",
+    "that gives students a discount every day",
+    "built around a community event every month",
+    "that guarantees a response within one hour",
+    "that hires and trains teenagers for their first job",
+    "that sells only limited-edition runs",
+    "that rotates its offerings with the seasons",
+    "aimed at small businesses with no marketing budget",
+    "run as a cooperative owned by its workers"
+  ];
+
+  var svgNS = "http://www.w3.org/2000/svg";
+  var segStep = 360 / categories.length;
+
+  function polarToCartesian(cx, cy, r, angleDeg){
+    var rad = (angleDeg - 90) * Math.PI / 180;
+    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+  }
+
+  function describeSlice(cx, cy, r, startAngle, endAngle){
+    var start = polarToCartesian(cx, cy, r, endAngle);
+    var end = polarToCartesian(cx, cy, r, startAngle);
+    var largeArc = (endAngle - startAngle) <= 180 ? "0" : "1";
+    return ["M", cx, cy, "L", start.x, start.y, "A", r, r, 0, largeArc, 0, end.x, end.y, "Z"].join(" ");
+  }
+
+  function buildWheel(){
+    var svg = document.getElementById("wheelSvg");
+    var cx = 150, cy = 150, r = 148;
+
+    for (var i = 0; i < categories.length; i++){
+      var startAngle = i * segStep;
+      var endAngle = startAngle + segStep;
+      var path = document.createElementNS(svgNS, "path");
+      path.setAttribute("d", describeSlice(cx, cy, r, startAngle, endAngle));
+      path.setAttribute("fill", categories[i].color);
+      path.setAttribute("stroke", "#1B1A21");
+      path.setAttribute("stroke-width", "1.5");
+      svg.appendChild(path);
+    }
+  }
+
+  function buildLegend(){
+    var legend = document.getElementById("legend");
+    categories.forEach(function(cat){
+      var item = document.createElement("div");
+      item.className = "legend-item";
+      var dot = document.createElement("span");
+      dot.className = "swatch";
+      dot.style.background = cat.color;
+      item.appendChild(dot);
+      item.appendChild(document.createTextNode(cat.name));
+      legend.appendChild(item);
+    });
+  }
+
+  function buildLightRing(){
+    var ring = document.getElementById("lightRing");
+    var count = 20;
+    for (var i = 0; i < count; i++){
+      var angle = i * (360 / count);
+      var bulb = document.createElement("span");
+      bulb.className = "bulb";
+      bulb.style.transform = "rotate(" + angle + "deg) translate(0, -145px)";
+      bulb.style.setProperty("--d", (i % count) * 0.045 + "s");
+      ring.appendChild(bulb);
+    }
+  }
+
+  function showScreen(id){
+    var screens = document.querySelectorAll(".screen");
+    for (var i = 0; i < screens.length; i++){
+      screens[i].classList.remove("active");
+    }
+    var target = document.getElementById(id);
+    target.classList.add("active");
+    window.scrollTo(0, 0);
+    target.focus({ preventScroll: true });
+  }
+
+  buildWheel();
+  buildLightRing();
+  buildLegend();
+
+  document.getElementById("btn-generate").addEventListener("click", function(){
+    showScreen("screen-wheel");
+  });
+  document.getElementById("btn-about").addEventListener("click", function(){
+    showScreen("screen-about");
+  });
+  document.getElementById("btn-back-about").addEventListener("click", function(){
+    showScreen("screen-home");
+  });
+  document.getElementById("btn-back-wheel").addEventListener("click", function(){
+    showScreen("screen-home");
+  });
+
+  var wheelRig = document.getElementById("wheelRig");
+  var wheel = document.getElementById("wheel");
+  var goBtn = document.getElementById("btn-go");
+  var ticket = document.getElementById("ticket");
+  var ticketTag = document.getElementById("ticket-tag");
+  var ideaText = document.getElementById("idea-text");
+  var saveBtn = document.getElementById("btn-save");
+  var savedList = document.getElementById("saved-list");
+
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var currentRotation = 0;
+  var lastIdea = null;
+  var spinning = false;
+  var currentIdea = null;
+
+  function randomFrom(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function articleFor(word){ return /^[aeiou]/i.test(word) ? "An" : "A"; }
+
+  function generateIdea(category){
+    var subject = randomFrom(category.subjects);
+    var twist = randomFrom(twists);
+    return {
+      id: newId(),
+      category: category.name,
+      color: category.color,
+      text: articleFor(subject) + " " + subject + " " + twist + "."
+    };
+  }
+
+  function landedCategory(){
+    var effective = (360 - (currentRotation % 360)) % 360;
+    var index = Math.floor(effective / segStep) % categories.length;
+    return categories[index];
+  }
+
+  /* ---------- Saved ideas and their price lists ---------- */
+
+  var STORAGE_KEY = "ideaWheelSaved";
+  var MAX_ITEMS = 100;
+  var MAX_PRICE = 9999999.99;
+
+  function newId(){
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  }
+
+  function normalizeItem(it){
+    it = it && typeof it === "object" ? it : {};
+    return {
+      id: typeof it.id === "string" && it.id ? it.id : newId(),
+      type: it.type === "Service" ? "Service" : "Product",
+      name: String(it.name || ""),
+      price: it.price === "" || it.price == null ? "" : String(it.price)
+    };
+  }
+
+  // Older saves have no id, name or items; fill them in so they open like new ones.
+  function normalizeEntry(e){
+    e = e && typeof e === "object" ? e : {};
+    return {
+      id: typeof e.id === "string" && e.id ? e.id : newId(),
+      category: String(e.category || ""),
+      color: String(e.color || "var(--seg-1)"),
+      text: String(e.text || ""),
+      businessName: String(e.businessName || ""),
+      items: Array.isArray(e.items) ? e.items.map(normalizeItem) : []
+    };
+  }
+
+  function loadSaved(){
+    try {
+      var raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      return Array.isArray(raw) ? raw.map(normalizeEntry) : [];
+    } catch(e){ return []; }
+  }
+
+  var saved = loadSaved();
+
+  function persist(){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(saved)); } catch(e){}
+  }
+
+  function findSaved(id){
+    for (var i = 0; i < saved.length; i++){
+      if (saved[i].id === id) return saved[i];
+    }
+    return null;
+  }
+
+  function isInvalidPrice(value){
+    if (value === "" || value == null) return false;
+    var n = parseFloat(value);
+    return !isFinite(n) || n < 0;
+  }
+
+  function priceToCents(value){
+    if (value === "" || value == null) return 0;
+    var n = parseFloat(value);
+    if (!isFinite(n) || n < 0) return 0;
+    return Math.round(Math.min(n, MAX_PRICE) * 100);
+  }
+
+  function formatMoney(cents){
+    return "$" + (cents / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function filledItems(entry){
+    return entry.items.filter(function(it){ return it.name.trim() !== "" || it.price !== ""; });
+  }
+
+  function planTotalCents(entry){
+    return entry.items.reduce(function(sum, it){ return sum + priceToCents(it.price); }, 0);
+  }
+
+  var planBtn = document.getElementById("btn-plan");
+  var pendingRemoveId = null;
+  var pendingRemoveTimer = null;
+
+  function renderSaved(){
+    savedList.textContent = "";
+    if (saved.length === 0){
+      var empty = document.createElement("p");
+      empty.className = "saved-empty";
+      empty.textContent = "Nothing saved yet. Spin the wheel and save an idea you like.";
+      savedList.appendChild(empty);
+      return;
+    }
+    saved.slice().reverse().forEach(function(entry){
+      var row = document.createElement("div");
+      row.className = "saved-item";
+
+      var main = document.createElement("div");
+      main.className = "saved-main";
+      var p = document.createElement("p");
+      if (entry.businessName.trim()){
+        var nm = document.createElement("span");
+        nm.className = "saved-name";
+        nm.textContent = entry.businessName.trim();
+        p.appendChild(nm);
+      }
+      var cat = document.createElement("strong");
+      cat.style.color = entry.color;
+      cat.textContent = entry.category + ": ";
+      p.appendChild(cat);
+      p.appendChild(document.createTextNode(entry.text));
+      main.appendChild(p);
+
+      var count = filledItems(entry).length;
+      var meta = document.createElement("span");
+      meta.className = "saved-meta";
+      meta.textContent = count === 0
+        ? "No products or services yet"
+        : count + (count === 1 ? " item" : " items") + " · " + formatMoney(planTotalCents(entry));
+      main.appendChild(meta);
+
+      var actions = document.createElement("div");
+      actions.className = "saved-actions";
+      var openBtn = document.createElement("button");
+      openBtn.type = "button";
+      openBtn.className = "open";
+      openBtn.textContent = count === 0 ? "Add prices" : "Open plan";
+      openBtn.addEventListener("click", function(){ openPlan(entry.id); });
+      var removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      var confirming = pendingRemoveId === entry.id;
+      removeBtn.textContent = confirming ? "Tap to confirm" : "Remove";
+      if (confirming) removeBtn.className = "confirming";
+      removeBtn.addEventListener("click", function(){ removeSaved(entry.id); });
+      actions.appendChild(openBtn);
+      actions.appendChild(removeBtn);
+
+      row.appendChild(main);
+      row.appendChild(actions);
+      savedList.appendChild(row);
+    });
+  }
+
+  // Two taps to delete, since a saved idea can hold a whole price list.
+  function removeSaved(id){
+    clearTimeout(pendingRemoveTimer);
+    if (pendingRemoveId === id){
+      pendingRemoveId = null;
+      saved = saved.filter(function(e){ return e.id !== id; });
+      persist();
+      renderSaved();
+      updateSaveButton();
+      return;
+    }
+    pendingRemoveId = id;
+    pendingRemoveTimer = setTimeout(function(){
+      pendingRemoveId = null;
+      renderSaved();
+    }, 3000);
+    renderSaved();
+  }
+
+  function updateSaveButton(){
+    var isSaved = !!(currentIdea && findSaved(currentIdea.id));
+    saveBtn.disabled = isSaved;
+    saveBtn.innerHTML = isSaved ? "&#10003; Saved" : "&#9733; Save idea";
+  }
+
+  function saveCurrent(){
+    if (!currentIdea) return null;
+    var existing = findSaved(currentIdea.id);
+    if (existing) return existing;
+    var entry = normalizeEntry({
+      id: currentIdea.id,
+      category: currentIdea.category,
+      color: currentIdea.color,
+      text: currentIdea.text
+    });
+    saved.push(entry);
+    persist();
+    renderSaved();
+    updateSaveButton();
+    return entry;
+  }
+
+  saveBtn.addEventListener("click", saveCurrent);
+  planBtn.addEventListener("click", function(){
+    var entry = saveCurrent();
+    if (entry) openPlan(entry.id);
+  });
+
+  /* ---------- Plan screen ---------- */
+
+  var planTag = document.getElementById("plan-tag");
+  var planIdeaText = document.getElementById("plan-idea-text");
+  var planName = document.getElementById("plan-business-name");
+  var planItems = document.getElementById("plan-items");
+  var planTotal = document.getElementById("plan-total");
+  var planCount = document.getElementById("plan-count");
+  var planStatus = document.getElementById("plan-status");
+  var addItemBtn = document.getElementById("btn-add-item");
+  var exportBtn = document.getElementById("btn-export");
+  var activeId = null;
+
+  function activeEntry(){ return activeId ? findSaved(activeId) : null; }
+
+  function setStatus(message, isError){
+    planStatus.textContent = message || "";
+    planStatus.className = "plan-status" + (isError ? " error" : "");
+  }
+
+  function updateTotals(){
+    var entry = activeEntry();
+    if (!entry) return;
+    planTotal.textContent = formatMoney(planTotalCents(entry));
+    var n = filledItems(entry).length;
+    planCount.textContent = n + (n === 1 ? " item" : " items");
+    var anyInvalid = entry.items.some(function(it){ return isInvalidPrice(it.price); });
+    if (anyInvalid){
+      setStatus("Prices can't be negative. Those rows count as $0.00.", true);
+    } else if (planStatus.classList.contains("error")){
+      setStatus("");
+    }
+  }
+
+  function renderItems(){
+    var entry = activeEntry();
+    planItems.textContent = "";
+    if (!entry) return;
+    entry.items.forEach(function(it){
+      var row = document.createElement("div");
+      row.className = "item" + (isInvalidPrice(it.price) ? " invalid" : "");
+      row.dataset.id = it.id;
+
+      var name = document.createElement("input");
+      name.type = "text";
+      name.id = "item-name-" + it.id;
+      name.className = "input item-name";
+      name.maxLength = 80;
+      name.placeholder = "Item name, e.g. Large cold brew";
+      name.setAttribute("aria-label", "Item name");
+      name.autocomplete = "off";
+      name.value = it.name;
+
+      var type = document.createElement("select");
+      type.id = "item-type-" + it.id;
+      type.className = "input item-type";
+      type.setAttribute("aria-label", "Product or service");
+      ["Product", "Service"].forEach(function(t){
+        var opt = document.createElement("option");
+        opt.value = t;
+        opt.textContent = t;
+        type.appendChild(opt);
+      });
+      type.value = it.type;
+
+      var wrap = document.createElement("div");
+      wrap.className = "price-wrap";
+      var cur = document.createElement("span");
+      cur.className = "cur";
+      cur.setAttribute("aria-hidden", "true");
+      cur.textContent = "$";
+      var price = document.createElement("input");
+      price.type = "number";
+      price.id = "item-price-" + it.id;
+      price.className = "input item-price";
+      price.min = "0";
+      price.max = String(MAX_PRICE);
+      price.step = "0.01";
+      price.inputMode = "decimal";
+      price.placeholder = "0.00";
+      price.setAttribute("aria-label", "Price in dollars");
+      price.value = it.price;
+      wrap.appendChild(cur);
+      wrap.appendChild(price);
+
+      var rm = document.createElement("button");
+      rm.type = "button";
+      rm.className = "item-remove";
+      rm.setAttribute("aria-label", "Remove item");
+      rm.innerHTML = "&times;";
+
+      row.appendChild(name);
+      row.appendChild(type);
+      row.appendChild(wrap);
+      row.appendChild(rm);
+      planItems.appendChild(row);
+    });
+    updateTotals();
+  }
+
+  function openPlan(id){
+    var entry = findSaved(id);
+    if (!entry) return;
+    activeId = id;
+    if (entry.items.length === 0){
+      entry.items.push(normalizeItem({}));
+      persist();
+    }
+    planTag.textContent = entry.category;
+    planTag.style.background = entry.color;
+    planIdeaText.textContent = entry.text;
+    planName.value = entry.businessName;
+    setStatus("");
+    renderItems();
+    showScreen("screen-plan");
+  }
+
+  function onItemEdit(ev){
+    var entry = activeEntry();
+    var row = ev.target.closest ? ev.target.closest(".item") : null;
+    if (!entry || !row) return;
+    var it = null;
+    for (var i = 0; i < entry.items.length; i++){
+      if (entry.items[i].id === row.dataset.id){ it = entry.items[i]; break; }
+    }
+    if (!it) return;
+    if (ev.target.classList.contains("item-name")){
+      it.name = ev.target.value;
+    } else if (ev.target.classList.contains("item-type")){
+      it.type = ev.target.value === "Service" ? "Service" : "Product";
+    } else if (ev.target.classList.contains("item-price")){
+      it.price = ev.target.value;
+      row.classList.toggle("invalid", isInvalidPrice(it.price));
+    } else {
+      return;
+    }
+    persist();
+    updateTotals();
+  }
+
+  planItems.addEventListener("input", onItemEdit);
+  planItems.addEventListener("change", onItemEdit);
+
+  planItems.addEventListener("click", function(ev){
+    var btn = ev.target.closest ? ev.target.closest(".item-remove") : null;
+    var entry = activeEntry();
+    if (!btn || !entry) return;
+    var id = btn.parentNode.dataset.id;
+    entry.items = entry.items.filter(function(it){ return it.id !== id; });
+    if (entry.items.length === 0) entry.items.push(normalizeItem({}));
+    persist();
+    renderItems();
+    addItemBtn.focus();
+  });
+
+  addItemBtn.addEventListener("click", function(){
+    var entry = activeEntry();
+    if (!entry) return;
+    if (entry.items.length >= MAX_ITEMS){
+      setStatus("A price list can hold up to " + MAX_ITEMS + " items.", true);
+      return;
+    }
+    var it = normalizeItem({});
+    entry.items.push(it);
+    persist();
+    renderItems();
+    var field = document.getElementById("item-name-" + it.id);
+    if (field) field.focus();
+  });
+
+  planName.addEventListener("input", function(){
+    var entry = activeEntry();
+    if (!entry) return;
+    entry.businessName = planName.value;
+    persist();
+  });
+
+  document.getElementById("btn-back-plan").addEventListener("click", function(){
+    renderSaved();
+    updateSaveButton();
+    showScreen("screen-wheel");
+  });
+
+  /* ---------- PDF export ---------- */
+
+  // The PDF fonts only cover Latin-1: swap common punctuation, drop emoji, mark anything else with "?".
+  function pdfText(s){
+    return String(s == null ? "" : s)
+      .replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "")
+      .replace(/[​-‏⁠︎️]/g, "")
+      .replace(/[‘’‛]/g, "'")
+      .replace(/[“”]/g, '"')
+      .replace(/[–—]/g, "-")
+      .replace(/…/g, "...")
+      .replace(/\s+/g, " ")
+      .replace(/[^\x20-\x7E¡-ÿ]/g, "?")
+      .trim();
+  }
+
+  // Wrap to a column width, breaking words that are wider than the column.
+  function wrapLines(doc, text, maxWidth){
+    var lines = [];
+    var line = "";
+    text.split(" ").forEach(function(word){
+      while (doc.getTextWidth(word) > maxWidth && word.length > 1){
+        var cut = word.length - 1;
+        while (cut > 1 && doc.getTextWidth(word.slice(0, cut)) > maxWidth) cut--;
+        if (line){ lines.push(line); line = ""; }
+        lines.push(word.slice(0, cut));
+        word = word.slice(cut);
+      }
+      var trial = line ? line + " " + word : word;
+      if (doc.getTextWidth(trial) <= maxWidth){
+        line = trial;
+      } else {
+        lines.push(line);
+        line = word;
+      }
+    });
+    if (line) lines.push(line);
+    return lines.length ? lines : [""];
+  }
+
+  function rgbFromVar(cssValue){
+    var m = /--[\w-]+/.exec(cssValue || "");
+    var raw = m ? getComputedStyle(document.documentElement).getPropertyValue(m[0]).trim() : String(cssValue || "").trim();
+    var h = /^#([0-9a-f]{6})$/i.exec(raw);
+    if (!h) return [200, 155, 60];
+    var n = parseInt(h[1], 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+
+  function slugify(s){
+    return pdfText(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
+  }
+
+  function buildPdf(entry){
+    var doc = new window.jspdf.jsPDF({ unit: "pt", format: "letter" });
+    var W = doc.internal.pageSize.getWidth();
+    var H = doc.internal.pageSize.getHeight();
+    var M = 54;
+    var right = W - M;
+    var contentW = right - M;
+    var bottomLimit = H - 78;
+    var INK = [27, 26, 33], MUTED = [105, 101, 112], BRASS = [200, 155, 60], RULE = [221, 216, 205];
+    var y = M;
+
+    function color(c){ doc.setTextColor(c[0], c[1], c[2]); }
+    function stroke(c, w){ doc.setDrawColor(c[0], c[1], c[2]); doc.setLineWidth(w); }
+
+    var items = filledItems(entry);
+    var title = pdfText(entry.businessName) || "Untitled business";
+
+    doc.setProperties({ title: title + " - price list", creator: "The Idea Wheel" });
+
+    // Masthead
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    color(BRASS);
+    doc.text("THE IDEA WHEEL", M, y, { charSpace: 1.5 });
+    doc.setFont("helvetica", "normal");
+    color(MUTED);
+    var today = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    doc.text(pdfText(today), right, y, { align: "right" });
+    y += 10;
+    stroke(BRASS, 1.5);
+    doc.line(M, y, right, y);
+    y += 38;
+
+    // Business name
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(26);
+    color(INK);
+    wrapLines(doc, title, contentW).forEach(function(l){
+      doc.text(l, M, y);
+      y += 31;
+    });
+    y += 4;
+
+    // Category pill
+    var rgb = rgbFromVar(entry.color);
+    var label = pdfText(entry.category).toUpperCase();
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8);
+    var pillW = doc.getTextWidth(label) + 20;
+    doc.setFillColor(rgb[0], rgb[1], rgb[2]);
+    doc.roundedRect(M, y, pillW, 18, 9, 9, "F");
+    var lum = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255;
+    color(lum > 0.6 ? INK : [255, 255, 255]);
+    doc.text(label, M + 10, y + 12.5);
+    y += 18 + 20;
+
+    // Idea
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(13);
+    color(INK);
+    wrapLines(doc, pdfText(entry.text), contentW).forEach(function(l){
+      doc.text(l, M, y);
+      y += 18;
+    });
+    y += 22;
+
+    // Products and services
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    color(BRASS);
+    doc.text("PRODUCTS AND SERVICES", M, y, { charSpace: 1.2 });
+    y += 20;
+
+    var colType = M + 304;
+    var itemW = colType - M - 18;
+
+    function drawTableHeader(){
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.5);
+      color(MUTED);
+      doc.text("ITEM", M, y);
+      doc.text("TYPE", colType, y);
+      doc.text("PRICE", right, y, { align: "right" });
+      y += 7;
+      stroke(INK, 0.75);
+      doc.line(M, y, right, y);
+      y += 4;
+    }
+
+    drawTableHeader();
+
+    items.forEach(function(it){
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      var lines = wrapLines(doc, pdfText(it.name) || "Untitled item", itemW);
+      var rowH = lines.length * 14 + 12;
+      if (y + rowH > bottomLimit){
+        doc.addPage();
+        y = M;
+        drawTableHeader();
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+      }
+      var base = y + 15;
+      color(INK);
+      lines.forEach(function(l, i){ doc.text(l, M, base + i * 14); });
+      color(MUTED);
+      doc.text(it.type, colType, base);
+      color(INK);
+      doc.text(it.price === "" ? "-" : formatMoney(priceToCents(it.price)), right, base, { align: "right" });
+      y += rowH;
+      stroke(RULE, 0.5);
+      doc.line(M, y - 2, right, y - 2);
+    });
+
+    // Total
+    if (y + 64 > bottomLimit){
+      doc.addPage();
+      y = M;
+    }
+    y += 10;
+    stroke(BRASS, 1.5);
+    doc.line(M, y, right, y);
+    y += 28;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    color(MUTED);
+    doc.text("TOTAL (" + items.length + (items.length === 1 ? " ITEM)" : " ITEMS)"), M, y);
+    doc.setFontSize(20);
+    color(INK);
+    doc.text(formatMoney(planTotalCents(entry)), right, y, { align: "right" });
+
+    // Footer on every page
+    var pages = doc.getNumberOfPages();
+    for (var p = 1; p <= pages; p++){
+      doc.setPage(p);
+      stroke(RULE, 0.5);
+      doc.line(M, H - 58, right, H - 58);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(8);
+      color(MUTED);
+      doc.text(
+        "Brainstorming worksheet made with The Idea Wheel. The idea was picked at random and the prices are the author's own estimates, not market research.",
+        M, H - 44, { maxWidth: contentW - 70 }
+      );
+      doc.text("Page " + p + " of " + pages, right, H - 44, { align: "right" });
+    }
+
+    var base = slugify(entry.businessName) || slugify(entry.category) || "idea";
+    return { doc: doc, filename: base + "-price-list.pdf" };
+  }
+
+  async function exportPdf(){
+    var entry = activeEntry();
+    if (!entry) return;
+    if (!(window.jspdf && window.jspdf.jsPDF)){
+      setStatus("The PDF tool didn't load. Check your connection, reload the page and try again.", true);
+      return;
+    }
+    if (filledItems(entry).length === 0){
+      setStatus("Add at least one product or service before exporting.", true);
+      return;
+    }
+    exportBtn.disabled = true;
+    setStatus("");
+    try {
+      var built = buildPdf(entry);
+      if (window.claude && typeof window.claude.use === "function"){
+        // Inside the Claude viewer, files go through its save prompt.
+        var downloads = await window.claude.use("downloads");
+        if (!downloads){
+          setStatus("Saving files isn't available in this view. Open the HTML file in your own browser to export the PDF.", true);
+          return;
+        }
+        try {
+          await downloads.save({ filename: built.filename, data: built.doc.output("arraybuffer") });
+          setStatus("PDF saved as " + built.filename + ".");
+        } catch(err){
+          if (err && err.code === "declined") setStatus("Export cancelled.");
+          else setStatus("The PDF couldn't be saved (" + ((err && err.code) || "error") + "). Try again.", true);
+        }
+      } else {
+        built.doc.save(built.filename);
+        setStatus("PDF downloaded as " + built.filename + ".");
+      }
+    } catch(err){
+      setStatus("Something went wrong while building the PDF. Try again.", true);
+    } finally {
+      exportBtn.disabled = false;
+    }
+  }
+
+  exportBtn.addEventListener("click", exportPdf);
+
+  function spin(){
+    if (spinning) return;
+    spinning = true;
+    goBtn.disabled = true;
+    ticket.classList.remove("revealed");
+    wheelRig.classList.add("spinning");
+
+    if (reducedMotion){
+      wheel.style.transition = "opacity .3s ease";
+      wheel.style.opacity = "0.5";
+      setTimeout(function(){ wheel.style.opacity = "1"; }, 300);
+      currentRotation += 30 + Math.floor(Math.random() * 360);
+    } else {
+      var extraSpins = 4 + Math.floor(Math.random() * 3); // 4-6 full turns
+      var offset = Math.floor(Math.random() * 360);
+      currentRotation += extraSpins * 360 + offset;
+      wheel.style.transition = "transform 3s cubic-bezier(0.12, 0.67, 0.15, 1)";
+      wheel.style.transform = "rotate(" + currentRotation + "deg)";
+    }
+
+    setTimeout(function(){
+      spinning = false;
+      wheelRig.classList.remove("spinning");
+      goBtn.disabled = false;
+      goBtn.textContent = "Spin again";
+
+      var category = landedCategory();
+      var idea = generateIdea(category);
+      var attempts = 0;
+      while (idea.text === lastIdea && attempts < 5){ idea = generateIdea(category); attempts++; }
+      lastIdea = idea.text;
+      currentIdea = idea;
+      updateSaveButton();
+
+      ticketTag.textContent = idea.category;
+      ticketTag.style.background = idea.color;
+      ideaText.textContent = idea.text;
+      ticket.classList.add("revealed");
+    }, 3000);
+  }
+
+  goBtn.addEventListener("click", spin);
+  renderSaved();
+})();
+</script>
+
+</body></html>
